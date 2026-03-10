@@ -35,7 +35,7 @@ const skillCategories = [
     skills: [
       { name: 'MySQL', level: 85 },
       { name: 'PostgreSQL', level: 70 },
-      { name: 'MongoDB', level: 60 },
+      { name: 'MariaDB', level: 60 },
       { name: 'SQL Server', level: 65 },
     ],
   },

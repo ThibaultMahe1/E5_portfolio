@@ -51,7 +51,7 @@ export default function About() {
               <div className="relative w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden border-2 border-white/20">
                 {/* Placeholder pour la photo */}
                 <div className="w-full h-full flex items-center justify-center text-7xl bg-gradient-to-br from-purple-900/50 to-pink-900/50">
-                  👨‍💻
+                  
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h3 className="text-2xl font-bold mb-4">
-              Bonjour, je suis <span className="text-primary">Prénom</span> !
+              Bonjour, je suis <span className="text-primary">thibault</span> !
             </h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Actuellement en BTS SIO option SLAM, je suis passionné par le développement 

@@ -3,15 +3,14 @@ import { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'email@example.com', href: 'mailto:email@example.com', color: 'from-pink-500 to-rose-500' },
-  { icon: Phone, label: 'Téléphone', value: '06 XX XX XX XX', href: 'tel:+33600000000', color: 'from-green-500 to-emerald-500' },
-  { icon: MapPin, label: 'Localisation', value: 'Ville, France', href: null, color: 'from-blue-500 to-cyan-500' },
+  { icon: Mail, label: 'Email', value: 'mahethibault44@gmail.com', href: 'mailto:mahethibault44@gmail.com', color: 'from-pink-500 to-rose-500' },
+  { icon: Phone, label: 'Téléphone', value: '06 59 02 72 37', href: 'tel:+33659027237', color: 'from-green-500 to-emerald-500' },
+  { icon: MapPin, label: 'Localisation', value: 'Saint-Nazaire, France', href: null, color: 'from-blue-500 to-cyan-500' },
 ];
 
 const socialLinks = [
-  { icon: Github, label: 'GitHub', href: '#', color: 'from-gray-600 to-gray-800' },
-  { icon: Linkedin, label: 'LinkedIn', href: '#', color: 'from-blue-600 to-blue-800' },
-  { icon: Twitter, label: 'Twitter', href: '#', color: 'from-sky-400 to-sky-600' },
+  { icon: Github, label: 'GitHub', href: 'https://github.com/ThibaultMahe1', color: 'from-gray-600 to-gray-800' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/thibault-mahe-176b16354/', color: 'from-blue-600 to-blue-800' },
 ];
 
 export default function Contact() {

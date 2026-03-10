@@ -1,83 +1,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ExternalLink, Github, Folder, Eye } from 'lucide-react';
-
-const projects = [
-  {
-    id: 1,
-    title: 'Application de Gestion',
-    description: 'Application web de gestion complète avec authentification, CRUD et tableau de bord interactif.',
-    image: null,
-    tags: ['PHP', 'MySQL', 'Bootstrap'],
-    github: '#',
-    demo: '#',
-    category: 'web',
-    color: 'from-blue-500 to-cyan-500',
-  },
-  {
-    id: 2,
-    title: 'Site E-commerce',
-    description: 'Plateforme e-commerce avec panier, paiement en ligne et gestion des commandes.',
-    image: null,
-    tags: ['React', 'Node.js', 'MongoDB'],
-    github: '#',
-    demo: '#',
-    category: 'web',
-    color: 'from-purple-500 to-pink-500',
-  },
-  {
-    id: 3,
-    title: 'Application Mobile',
-    description: 'Application mobile de suivi de tâches avec notifications et synchronisation cloud.',
-    image: null,
-    tags: ['React Native', 'Firebase'],
-    github: '#',
-    demo: null,
-    category: 'mobile',
-    color: 'from-green-500 to-emerald-500',
-  },
-  {
-    id: 4,
-    title: 'API REST',
-    description: 'API RESTful documentée pour la gestion de ressources avec authentification JWT.',
-    image: null,
-    tags: ['Node.js', 'Express', 'PostgreSQL'],
-    github: '#',
-    demo: '#',
-    category: 'backend',
-    color: 'from-orange-500 to-yellow-500',
-  },
-  {
-    id: 5,
-    title: 'Dashboard Analytics',
-    description: 'Tableau de bord interactif avec graphiques et visualisation de données en temps réel.',
-    image: null,
-    tags: ['Vue.js', 'Chart.js', 'Python'],
-    github: '#',
-    demo: '#',
-    category: 'web',
-    color: 'from-pink-500 to-rose-500',
-  },
-  {
-    id: 6,
-    title: 'Outil de Scripting',
-    description: 'Scripts d\'automatisation pour la gestion de serveurs et le déploiement.',
-    image: null,
-    tags: ['Python', 'Bash', 'Docker'],
-    github: '#',
-    demo: null,
-    category: 'devops',
-    color: 'from-indigo-500 to-violet-500',
-  },
-];
-
-const categories = [
-  { id: 'all', name: 'Tous', color: 'from-gray-500 to-gray-600' },
-  { id: 'web', name: 'Web', color: 'from-blue-500 to-cyan-500' },
-  { id: 'mobile', name: 'Mobile', color: 'from-green-500 to-emerald-500' },
-  { id: 'backend', name: 'Backend', color: 'from-orange-500 to-yellow-500' },
-  { id: 'devops', name: 'DevOps', color: 'from-purple-500 to-pink-500' },
-];
+import { Link } from 'react-router-dom';
+import { Github, Folder, Eye } from 'lucide-react';
+import projects, { categories } from '../data/projects';
 
 function ProjectCard({ project, index, isInView }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -92,11 +17,15 @@ function ProjectCard({ project, index, isInView }) {
       className="group"
     >
       <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:border-white/20 transition-colors duration-300">
-        {/* Colorful image placeholder */}
+        {/* Project image */}
         <div className={`h-48 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Folder className="w-16 h-16 text-white/50 group-hover:scale-110 transition-transform duration-300" />
-          </div>
+          {project.image ? (
+            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Folder className="w-16 h-16 text-white/50 group-hover:scale-110 transition-transform duration-300" />
+            </div>
+          )}
           {/* Overlay on hover */}
           <div 
             className={`absolute inset-0 bg-dark/80 flex items-center justify-center gap-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
@@ -109,14 +38,12 @@ function ProjectCard({ project, index, isInView }) {
                 <Github className="w-5 h-5" />
               </a>
             )}
-            {project.demo && (
-              <a
-                href={project.demo}
-                className="p-3 bg-white/10 rounded-full hover:bg-accent/50 transition-colors transform hover:scale-110"
-              >
-                <Eye className="w-5 h-5" />
-              </a>
-            )}
+            <Link
+              to={`/projet/${project.id}`}
+              className="p-3 bg-white/10 rounded-full hover:bg-accent/50 transition-colors transform hover:scale-110"
+            >
+              <Eye className="w-5 h-5" />
+            </Link>
           </div>
         </div>
 

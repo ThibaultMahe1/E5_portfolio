@@ -42,7 +42,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
         >
-          Prénom <span className="gradient-text">NOM</span>
+          Thibault <span className="gradient-text">MAHE</span>
         </motion.h1>
 
         {/* TypeWriter effect */}
@@ -73,8 +73,8 @@ export default function Hero() {
           className="flex justify-center gap-4 mb-12"
         >
           {[
-            { icon: Github, href: '#', label: 'GitHub' },
-            { icon: Linkedin, href: '#', label: 'LinkedIn' },
+            { icon: Github, href: 'https://github.com/ThibaultMahe1', label: 'GitHub' },
+            { icon: Linkedin, href: 'https://www.linkedin.com/in/thibault-mahe-176b16354/', label: 'LinkedIn' },
             { icon: Mail, href: '#contact', label: 'Email' },
           ].map(({ icon: Icon, href, label }) => (
             <MagneticButton key={label}>
@@ -106,7 +106,8 @@ export default function Hero() {
           </MagneticButton>
           <MagneticButton>
             <a
-              href="#contact"
+              href="/CV%20Mahe%20Thibault.pdf"
+              download
               className="px-8 py-3 glass rounded-xl font-semibold hover:bg-white/10 transition-colors inline-flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
