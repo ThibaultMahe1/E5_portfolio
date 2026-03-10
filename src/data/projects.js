@@ -1,9 +1,11 @@
+const base = import.meta.env.BASE_URL;
+
 const projects = [
   {
     id: 1,
     title: 'Site web centre équestre de Pontchâteau',
     description: 'Application Web vitrine pour promouvoir le centre équestre de Pontchâteau.',
-    image: '/project/E6_legere/photo_site.png',
+    image: `${base}project/E6_legere/photo_site.png`,
     tags: ['Laravel', 'PHP', 'Tailwind CSS', 'MariaDB'],
     github: 'https://github.com/ThibaultMahe1/E6_app_l-gere',
     category: 'web',
@@ -45,14 +47,14 @@ const projects = [
     role: 'Développeur full-stack',
     duree: '6 semaines',
     environnement: ['VS Code', 'Git', 'GitHub', 'Composer', 'DBeaver'],
-    captures: ['/project/E6_legere/photo_site.png', '/project/E6_legere/photo_site2.png', '/project/E6_legere/photo_site3.png', '/project/E6_legere/photo_site4.png'],
+    captures: [`${base}project/E6_legere/photo_site.png`, `${base}project/E6_legere/photo_site2.png`, `${base}project/E6_legere/photo_site3.png`, `${base}project/E6_legere/photo_site4.png`],
     bilan: `Ce projet m'a permis de consolider mes compétences en développement web avec Laravel et de mieux comprendre les besoins d'un client dans un contexte professionnel.`,
   },
   {
     id: 2,
     title: 'Application lourde – Gestion centre équestre',
     description: 'Application de bureau développée en C# avec Avalonia pour gérer le site web du centre équestre de Pontchâteau : utilisateurs, événements, tarifs, galeries et chevaux.',
-    image: '/project/E6_lourde/app_lourde.png',
+    image: `${base}project/E6_lourde/app_lourde.png`,
     tags: ['C#', 'Avalonia'],
     github: 'https://github.com/ThibaultMahe1/E6_app_lourde',
     category: 'desktop',
@@ -87,7 +89,7 @@ const projects = [
     role: 'Développeur desktop',
     duree: '6 semaines',
     environnement: ['Visual Studio', 'Git', 'GitHub', 'DBeaver', 'MariaDB'],
-    captures: ['/project/E6_lourde/app_lourde.png'],
+    captures: [`${base}project/E6_lourde/app_lourde.png`],
     bilan: `Ce projet m'a permis de découvrir le développement d'applications lourdes avec C# et le framework Avalonia. Il complète le projet web du centre équestre en offrant un outil de gestion interne efficace. J'ai pu approfondir mes compétences en architecture logicielle, en interaction avec une base de données depuis une application desktop et en conception d'interfaces utilisateur riches.`,
   },
 
@@ -95,7 +97,7 @@ const projects = [
     id: 3,
     title: 'Site web educatif pour enfants',
     description: 'Application Web éducative pour aider les enfants à apprendre les bases des mathématiques.',
-    image: '/project/site_educatif/acceuil.png',
+    image: `${base}project/site_educatif/acceuil.png`,
     tags: ['PHP', 'CSS', 'MariaDB', 'JavaScript', 'HTML'],
     github: 'https://github.com/NoanBregeon/Projet_Renfor_PHP',
     category: 'web',    
@@ -141,7 +143,7 @@ const projects = [
     role: 'Développeur full-stack',
     duree: '1 semaine',
     environnement: ['VS Code', 'Git', 'GitHub', 'DBeaver'],
-    captures: ['/project/site_educatif/acceuil.png', '/project/site_educatif/selection_niveau.png', '/project/site_educatif/niveau.png'],
+    captures: [`${base}project/site_educatif/acceuil.png`, `${base}project/site_educatif/selection_niveau.png`, `${base}project/site_educatif/niveau.png`],
     bilan: `Ce projet m'a permis de consolider mes compétences en développement web avec PHP, HTML, CSS et JavaScript, ainsi que de mieux comprendre les besoins d'un client dans un contexte éducatif.`,
   },
 
@@ -149,7 +151,7 @@ const projects = [
     id: 4,
     title: 'GoatPay – Système de paiement sécurisé',
     description: 'Application web de paiement sécurisé permettant l\'inscription, la connexion et le paiement par carte bancaire avec chiffrement AES-256.',
-    image: '/project/goatpay/acueil.png',
+    image: `${base}project/goatpay/acueil.png`,
     tags: ['PHP', 'MySQL', 'JavaScript', 'CSS'],
     github: 'https://github.com/ThibaultMahe1/projet-securit-',
     category: 'web',
@@ -192,7 +194,7 @@ const projects = [
     role: 'Développeur full-stack',
     duree: '2 jours',
     environnement: ['VS Code', 'Git', 'GitHub', 'MySQL', 'PHP 8'],
-    captures: ['/project/goatpay/acueil.png','/project/goatpay/payement.png'],
+    captures: [`${base}project/goatpay/acueil.png`,`${base}project/goatpay/payement.png`],
     bilan: `Ce projet m'a permis d'approfondir mes connaissances en sécurité web : chiffrement des données sensibles, protection CSRF, hashage des mots de passe et limitation des tentatives de connexion. Il m'a également permis de travailler en PHP natif sans framework, ce qui renforce la compréhension des mécanismes fondamentaux du développement web.`,
   },
 
