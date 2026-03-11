@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 
 const contactInfo = [
   { icon: Mail, label: 'Email', value: 'mahethibault44@gmail.com', href: 'mailto:mahethibault44@gmail.com', color: 'from-pink-500 to-rose-500' },
@@ -17,13 +17,38 @@ export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Ici tu pourras ajouter la logique d'envoi du formulaire
-    console.log('Form submitted:', formData);
-    alert('Message envoyé ! (simulation)');
-    setFormData({ name: '', email: '', message: '' });
+    setStatus('sending');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '0f3ac403-42a4-4664-a47a-1cbc76e2d38f',
+          from_name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Nouveau message portfolio de ${formData.name}`,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -179,12 +204,44 @@ export default function Contact() {
 
                 <motion.button
                   type="submit"
+                  disabled={status === 'sending'}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/30 transition-shadow"
+                  className={`w-full py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-shadow ${
+                    status === 'success'
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                      : status === 'error'
+                      ? 'bg-gradient-to-r from-red-500 to-rose-500'
+                      : 'bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30'
+                  } ${status === 'sending' ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  <Send className="w-5 h-5" />
-                  Envoyer le message
+                  {status === 'sending' && (
+                    <>
+                      <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Envoi en cours...
+                    </>
+                  )}
+                  {status === 'success' && (
+                    <>
+                      <CheckCircle className="w-5 h-5" />
+                      Message envoyé !
+                    </>
+                  )}
+                  {status === 'error' && (
+                    <>
+                      <AlertCircle className="w-5 h-5" />
+                      Erreur, réessayez
+                    </>
+                  )}
+                  {status === 'idle' && (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Envoyer le message
+                    </>
+                  )}
                 </motion.button>
               </div>
             </form>
