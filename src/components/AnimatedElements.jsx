@@ -158,7 +158,7 @@ export function TiltCard({ children, className = '' }) {
 export function GlowingBorder({ children, className = '' }) {
   return (
     <div className={`relative group ${className}`}>
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl opacity-0 group-hover:opacity-50 blur-sm transition-opacity duration-300" />
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-pink to-accent rounded-2xl opacity-0 group-hover:opacity-40 blur-sm transition-opacity duration-300" />
       <div className="relative">{children}</div>
     </div>
   );

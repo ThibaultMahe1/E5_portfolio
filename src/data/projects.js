@@ -48,13 +48,17 @@ const projects = [
     duree: '6 semaines',
     environnement: ['VS Code', 'Git', 'GitHub', 'Composer', 'DBeaver'],
     captures: [`${base}project/E6_legere/photo_site.png`, `${base}project/E6_legere/photo_site2.png`, `${base}project/E6_legere/photo_site3.png`, `${base}project/E6_legere/photo_site4.png`],
+    documentation: [
+      { title: 'Documentation technique', file: `${base}project/E6_legere/documentation_technique.pdf` },
+      { title: 'Documentation utilisateur', file: `${base}project/E6_legere/documentation_utilisateur.pdf` },
+    ],
     bilan: `Ce projet m'a permis de consolider mes compétences en développement web avec Laravel et de mieux comprendre les besoins d'un client dans un contexte professionnel.`,
   },
   {
     id: 2,
     title: 'Application lourde – Gestion centre équestre',
-    description: 'Application de bureau développée en C# avec Avalonia pour gérer le site web du centre équestre de Pontchâteau : utilisateurs, événements, tarifs, galeries et chevaux.',
-    image: `${base}project/E6_lourde/app_lourde.png`,
+    description: 'Application de bureau développée pour gérer le site web du centre équestre de Pontchâteau en C# avec Avalonia : utilisateurs, événements, tarifs, galeries et chevaux.',
+    image: `${base}project/E6_lourd/capture1.png`,
     tags: ['C#', 'Avalonia'],
     github: 'https://github.com/ThibaultMahe1/E6_app_lourde',
     category: 'desktop',
@@ -89,7 +93,11 @@ const projects = [
     role: 'Développeur desktop',
     duree: '6 semaines',
     environnement: ['Visual Studio', 'Git', 'GitHub', 'DBeaver', 'MariaDB'],
-    captures: [`${base}project/E6_lourde/app_lourde.png`],
+    captures: [`${base}project/E6_lourd/capture1.png`, `${base}project/E6_lourd/capture2.png`, `${base}project/E6_lourd/capture3.png`],
+    documentation: [
+      { title: 'Documentation technique', file: `${base}project/E6_lourd/Documentation_Technique.pdf` },
+      { title: 'Documentation utilisateur', file: `${base}project/E6_lourd/Documentation_Utilisateur.pdf` },
+    ],
     bilan: `Ce projet m'a permis de découvrir le développement d'applications lourdes avec C# et le framework Avalonia. Il complète le projet web du centre équestre en offrant un outil de gestion interne efficace. J'ai pu approfondir mes compétences en architecture logicielle, en interaction avec une base de données depuis une application desktop et en conception d'interfaces utilisateur riches.`,
   },
 
@@ -144,6 +152,9 @@ const projects = [
     duree: '1 semaine',
     environnement: ['VS Code', 'Git', 'GitHub', 'DBeaver'],
     captures: [`${base}project/site_educatif/acceuil.png`, `${base}project/site_educatif/selection_niveau.png`, `${base}project/site_educatif/niveau.png`],
+    documentation: [
+      // { title: 'Documentation technique', file: `${base}project/site_educatif/doc_technique.pdf` },
+    ],
     bilan: `Ce projet m'a permis de consolider mes compétences en développement web avec PHP, HTML, CSS et JavaScript, ainsi que de mieux comprendre les besoins d'un client dans un contexte éducatif.`,
   },
 
@@ -195,6 +206,9 @@ const projects = [
     duree: '2 jours',
     environnement: ['VS Code', 'Git', 'GitHub', 'MySQL', 'PHP 8'],
     captures: [`${base}project/goatpay/acueil.png`,`${base}project/goatpay/payement.png`],
+    documentation: [
+      // { title: 'Documentation technique', file: `${base}project/goatpay/doc_technique.pdf` },
+    ],
     bilan: `Ce projet m'a permis d'approfondir mes connaissances en sécurité web : chiffrement des données sensibles, protection CSRF, hashage des mots de passe et limitation des tentatives de connexion. Il m'a également permis de travailler en PHP natif sans framework, ce qui renforce la compréhension des mécanismes fondamentaux du développement web.`,
   },
 

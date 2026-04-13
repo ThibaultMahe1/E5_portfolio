@@ -43,7 +43,7 @@ export default function TypeWriter({
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
-        className="ml-1 w-[3px] h-8 md:h-12 bg-gradient-to-b from-primary to-accent inline-block"
+        className="ml-1 w-[2px] sm:w-[3px] h-6 sm:h-8 md:h-12 bg-gradient-to-b from-primary to-accent inline-block"
       />
     </span>
   );

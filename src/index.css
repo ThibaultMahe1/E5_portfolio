@@ -4,92 +4,121 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  @apply bg-gradient-to-br from-slate-900 via-purple-950/50 to-slate-900 text-white;
+  background: #0a0a1a;
+  color: #fff;
   font-family: 'Inter', system-ui, sans-serif;
   min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Subtle noise texture overlay - lightweight version */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.02;
+  background: repeating-conic-gradient(rgba(255,255,255,0.03) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+}
+
+/* Safe area padding for notched phones */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-light;
+  background: #0a0a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-primary to-accent rounded-full;
+  background: linear-gradient(180deg, #7c3aed, #06b6d4);
+  border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary-dark;
+/* Hide scrollbar on mobile for horizontal scrollers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Design Tokens ─── */
 
 .gradient-text {
-  @apply bg-gradient-to-r from-primary via-pink-500 to-accent bg-clip-text text-transparent;
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #a78bfa, #f472b6, #06b6d4);
 }
 
 .glass {
-  @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-colored {
-  @apply bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-lg border border-white/20;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .card-hover {
-  @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/30;
+  @apply transition-all duration-500;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -15px rgba(124, 58, 237, 0.2);
 }
 
 .section-title {
-  @apply text-3xl md:text-4xl font-bold mb-4;
+  @apply text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4 tracking-tight;
 }
 
 .section-subtitle {
-  @apply text-gray-300 text-lg max-w-2xl;
+  @apply text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed;
 }
 
-/* Animation pour le curseur clignotant */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+/* Section label badge */
+.section-label {
+  @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest mb-6;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
 }
 
-.cursor-blink {
-  animation: blink 1s infinite;
-}
+/* ─── Glow Effects ─── */
 
-/* Effet de glow coloré */
 .glow {
-  box-shadow: 0 0 30px rgba(99, 102, 241, 0.4), 0 0 60px rgba(139, 92, 246, 0.2), 0 0 90px rgba(6, 182, 212, 0.1);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 0 80px rgba(124, 58, 237, 0.1);
 }
 
 .glow-text {
-  text-shadow: 0 0 30px rgba(99, 102, 241, 0.6), 0 0 60px rgba(236, 72, 153, 0.4);
+  text-shadow: 0 0 30px rgba(124, 58, 237, 0.5), 0 0 60px rgba(244, 114, 182, 0.3);
 }
 
 /* Gradient border */
 .gradient-border {
   position: relative;
-  background: linear-gradient(#1e293b, #1e293b) padding-box,
-              linear-gradient(135deg, #6366f1, #ec4899, #06b6d4) border-box;
-  border: 2px solid transparent;
-}
-
-/* Colorful section backgrounds */
-.section-gradient-1 {
-  @apply bg-gradient-to-br from-purple-900/30 via-pink-900/20 to-blue-900/30;
-}
-
-.section-gradient-2 {
-  @apply bg-gradient-to-br from-blue-900/30 via-cyan-900/20 to-purple-900/30;
-}
-
-.section-gradient-3 {
-  @apply bg-gradient-to-br from-pink-900/30 via-purple-900/20 to-indigo-900/30;
+  background: linear-gradient(#141428, #141428) padding-box,
+              linear-gradient(135deg, #7c3aed, #f472b6, #06b6d4) border-box;
+  border: 1px solid transparent;
 }
 
 /* Animated gradient background */
@@ -100,12 +129,57 @@ body {
 }
 
 .animated-gradient {
-  background: linear-gradient(-45deg, #6366f1, #ec4899, #06b6d4, #8b5cf6, #f59e0b);
+  background: linear-gradient(-45deg, #7c3aed, #f472b6, #06b6d4, #8b5cf6, #f59e0b);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }
 
-/* Marquee animations - optimisées avec transform */
+/* Shimmer line */
+.shimmer-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.4), rgba(244, 114, 182, 0.4), rgba(6, 182, 212, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Glowing orb animation */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Morphing blob - simplified */
+.morph-blob {
+  animation: morph 8s ease-in-out infinite;
+}
+
+/* Hover card lift with glow */
+.card-lift {
+  @apply transition-all duration-500;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px -15px rgba(124, 58, 237, 0.15), 0 0 30px -10px rgba(244, 114, 182, 0.1);
+}
+
+/* Gradient border animation */
+.animate-border {
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Text gradient animation */
+.gradient-text-animated {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #a78bfa, #f472b6, #06b6d4, #a78bfa);
+  background-size: 300% 300%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* ─── Marquee ─── */
+
 @keyframes marquee-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -118,10 +192,111 @@ body {
 
 .animate-marquee-left {
   animation: marquee-left linear infinite;
-  will-change: transform;
 }
 
 .animate-marquee-right {
   animation: marquee-right linear infinite;
-  will-change: transform;
+}
+
+/* ─── Particle & Orb CSS animations ─── */
+
+/* Rising particles with sinusoidal drift */
+@keyframes particle-rise {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  8% { opacity: 0.8; }
+  50% { transform: translateY(45vh) translateX(var(--drift, 0px)); }
+  92% { opacity: 0.6; }
+  100% {
+    transform: translateY(-10vh) translateX(calc(var(--drift, 0px) * -0.5));
+    opacity: 0;
+  }
+}
+
+.particle-rise {
+  animation: particle-rise linear infinite;
+}
+
+/* Soft pulse glow on each particle */
+@keyframes particle-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.6); opacity: 1; }
+}
+
+.particle-pulse {
+  animation: particle-pulse ease-in-out infinite;
+}
+
+/* Twinkling star effect */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  20% { opacity: 0.9; transform: scale(1); }
+  40% { opacity: 0.2; transform: scale(0.7); }
+  60% { opacity: 0.7; transform: scale(1.1); }
+  80% { opacity: 0.1; transform: scale(0.6); }
+}
+
+.particle-twinkle {
+  animation: twinkle ease-in-out infinite;
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Ambient orb floats */
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(35px, -30px) scale(1.05); }
+  50% { transform: translate(-15px, -10px) scale(0.98); }
+  75% { transform: translate(20px, 20px) scale(1.02); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(-30px, 25px) scale(1.03); }
+  60% { transform: translate(25px, -20px) scale(0.97); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0); opacity: 0.05; }
+  33% { transform: translate(30px, -20px); opacity: 0.09; }
+  66% { transform: translate(-20px, 15px); opacity: 0.06; }
+}
+
+.orb-float-1 { animation: orb-float-1 28s ease-in-out infinite; }
+.orb-float-2 { animation: orb-float-2 34s ease-in-out infinite; }
+.orb-float-3 { animation: orb-float-3 22s ease-in-out infinite; }
+
+/* ─── Mobile Optimizations ─── */
+
+@media (max-width: 768px) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .blur-3xl {
+    filter: blur(40px);
+  }
+  
+  /* Disable expensive animations on mobile */
+  .orb-float-1,
+  .orb-float-2,
+  .orb-float-3 {
+    animation: none;
+  }
+  
+  .particle-pulse {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* Reduce motion for accessibility + perf */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,56 +1,99 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
-const colors = ['#6366f1', '#ec4899', '#06b6d4', '#8b5cf6'];
+const palette = [
+  { color: '#7c3aed', glow: 'rgba(124,58,237,0.4)' },
+  { color: '#f472b6', glow: 'rgba(244,114,182,0.4)' },
+  { color: '#06b6d4', glow: 'rgba(6,182,212,0.4)' },
+  { color: '#8b5cf6', glow: 'rgba(139,92,246,0.35)' },
+  { color: '#34d399', glow: 'rgba(52,211,153,0.35)' },
+];
 
-function Particle({ delay }) {
-  const randomX = Math.random() * 100;
-  const randomSize = Math.random() * 3 + 2;
-  const randomDuration = Math.random() * 15 + 20;
-  const randomOpacity = Math.random() * 0.3 + 0.1;
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
+function FloatingParticle({ x, size, duration, delay, colorObj, drift }) {
   return (
-    <motion.div
-      className="absolute rounded-full"
+    <div
+      className="absolute particle-rise"
       style={{
-        left: `${randomX}%`,
-        width: randomSize,
-        height: randomSize,
-        backgroundColor: randomColor,
-        opacity: randomOpacity,
-        willChange: 'transform',
+        left: `${x}%`,
+        '--drift': `${drift}px`,
+        animationDuration: `${duration}s`,
+        animationDelay: `${delay}s`,
       }}
-      initial={{ y: '100vh' }}
-      animate={{ y: '-10vh' }}
-      transition={{
-        duration: randomDuration,
-        delay: delay,
-        repeat: Infinity,
-        ease: 'linear',
+    >
+      <div
+        className="rounded-full particle-pulse"
+        style={{
+          width: size,
+          height: size,
+          backgroundColor: colorObj.color,
+          boxShadow: `0 0 ${size * 3}px ${size}px ${colorObj.glow}`,
+          animationDuration: `${2 + Math.random() * 3}s`,
+          animationDelay: `${delay}s`,
+        }}
+      />
+    </div>
+  );
+}
+
+function TwinkleStar({ x, y, size, delay }) {
+  return (
+    <div
+      className="absolute rounded-full bg-white particle-twinkle"
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        width: size,
+        height: size,
+        animationDuration: `${3 + Math.random() * 4}s`,
+        animationDelay: `${delay}s`,
       }}
     />
   );
 }
 
 export default function ParticleBackground() {
-  const [particles, setParticles] = useState([]);
+  const [elements, setElements] = useState({ particles: [], stars: [] });
 
   useEffect(() => {
-    const newParticles = Array.from({ length: 12 }, (_, i) => ({
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 8 : 16;
+    const starCount = isMobile ? 10 : 25;
+
+    const particles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
-      delay: Math.random() * 15,
+      x: Math.random() * 100,
+      size: Math.random() * 3 + 2,
+      duration: Math.random() * 18 + 18,
+      delay: Math.random() * 20,
+      drift: (Math.random() - 0.5) * 120,
+      colorObj: palette[Math.floor(Math.random() * palette.length)],
     }));
-    setParticles(newParticles);
+
+    const stars = Array.from({ length: starCount }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 0.5,
+      delay: Math.random() * 6,
+    }));
+
+    setElements({ particles, stars });
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      <div className="absolute -top-20 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute top-1/3 -left-20 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-1/4 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
-      {particles.map((particle) => (
-        <Particle key={particle.id} delay={particle.delay} />
+      {/* Ambient gradient orbs */}
+      <div className="absolute -top-20 -right-20 w-64 sm:w-96 h-64 sm:h-96 bg-primary/[0.06] rounded-full blur-[100px] orb-float-1" />
+      <div className="absolute top-1/3 -left-20 w-56 sm:w-80 h-56 sm:h-80 bg-pink/[0.06] rounded-full blur-[100px] orb-float-2" />
+      <div className="absolute bottom-20 right-1/4 w-48 sm:w-72 h-48 sm:h-72 bg-cyan-400/[0.05] rounded-full blur-[100px] orb-float-3" />
+
+      {/* Rising glowing particles */}
+      {elements.particles.map((p) => (
+        <FloatingParticle key={`p-${p.id}`} {...p} />
+      ))}
+
+      {/* Twinkling stars */}
+      {elements.stars.map((s) => (
+        <TwinkleStar key={`s-${s.id}`} {...s} />
       ))}
     </div>
   );

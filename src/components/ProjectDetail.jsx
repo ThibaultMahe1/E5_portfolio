@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import {
   ArrowLeft, Github, Calendar, User, Wrench, Target,
   BookOpen, ImageIcon, CheckCircle2, Layers, ExternalLink,
-  ChevronLeft, ChevronRight, X, ZoomIn,
+  ChevronLeft, ChevronRight, X, ZoomIn, FileText, Download,
 } from 'lucide-react';
 import projects from '../data/projects';
 
@@ -40,13 +40,13 @@ export default function ProjectDetail() {
     <div className="min-h-screen text-white relative">
       {/* ── Decorative background orbs ── */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[160px]" />
-        <div className="absolute top-1/3 -right-60 w-[500px] h-[500px] rounded-full bg-accent/10 blur-[140px]" />
-        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full bg-pink/8 blur-[120px]" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-[160px]" />
+        <div className="absolute top-1/3 -right-60 w-[500px] h-[500px] rounded-full bg-accent/[0.05] blur-[140px]" />
+        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full bg-pink/[0.04] blur-[120px]" />
       </div>
 
       {/* ══════════ HERO ══════════ */}
-      <header ref={heroRef} className="relative min-h-[55vh] flex items-end overflow-hidden">
+      <header ref={heroRef} className="relative min-h-[40vh] sm:min-h-[55vh] flex items-end overflow-hidden">
         {/* Parallax image / gradient bg */}
         <motion.div style={{ y: heroY }} className="absolute inset-0">
           {project.image ? (
@@ -54,6 +54,8 @@ export default function ProjectDetail() {
               <img
                 src={project.image}
                 alt=""
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-dark/30" />
@@ -68,7 +70,7 @@ export default function ProjectDetail() {
         {/* Hero content */}
         <motion.div
           style={{ opacity: heroOpacity }}
-          className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-28"
+          className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 pb-8 sm:pb-12 pt-20 sm:pt-28"
         >
           <Link
             to="/#projets"
@@ -81,12 +83,12 @@ export default function ProjectDetail() {
           <motion.div initial="hidden" animate="visible" variants={stagger}>
             <motion.h1
               variants={fadeUp}
-              className="text-4xl md:text-6xl font-bold tracking-tight mb-4 leading-tight"
+              className="text-2xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-3 sm:mb-4 leading-tight"
             >
               {project.title}
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/70 max-w-2xl mb-8">
+            <motion.p variants={fadeUp} className="text-sm sm:text-lg md:text-xl text-white/70 max-w-2xl mb-5 sm:mb-8">
               {project.description}
             </motion.p>
 
@@ -94,7 +96,7 @@ export default function ProjectDetail() {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3.5 py-1 text-xs font-mono tracking-wide bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90"
+                  className="px-3.5 py-1 text-xs font-mono tracking-wide bg-white/[0.06] backdrop-blur-md rounded-md border border-white/[0.08] text-white/80"
                 >
                   {tag}
                 </span>
@@ -108,14 +110,14 @@ export default function ProjectDetail() {
       </header>
 
       {/* ══════════ BODY ══════════ */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 pb-20">
         {/* ── Quick info cards (floating overlap) ── */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={stagger}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 -mt-10 mb-16"
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 -mt-6 sm:-mt-10 mb-10 sm:mb-16"
         >
           {[
             project.role && { icon: User, label: 'Rôle', value: project.role, accent: 'primary' },
@@ -137,13 +139,13 @@ export default function ProjectDetail() {
                 <motion.div key={i} variants={fadeUp}>
                   <Wrapper
                     {...linkProps}
-                    className={`group block rounded-2xl p-5 backdrop-blur-xl bg-dark-light/60 border border-white/[0.06] hover:border-white/15 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 ${card.href ? 'cursor-pointer' : ''}`}
+                    className={`group block rounded-xl sm:rounded-2xl p-3 sm:p-5 backdrop-blur-xl bg-dark-light/60 border border-white/[0.06] hover:border-white/15 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 ${card.href ? 'cursor-pointer' : ''}`}
                   >
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 border ${colors[card.accent]}`}>
-                      <card.icon className="w-4 h-4" />
+                    <div className={`w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 border ${colors[card.accent]}`}>
+                      <card.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
-                    <p className="text-[11px] uppercase tracking-widest text-gray-500 mb-1">{card.label}</p>
-                    <p className="font-semibold text-sm capitalize flex items-center gap-1.5">
+                    <p className="text-[9px] sm:text-[11px] uppercase tracking-widest text-gray-500 mb-0.5 sm:mb-1">{card.label}</p>
+                    <p className="font-semibold text-xs sm:text-sm capitalize flex items-center gap-1.5">
                       {card.value}
                       {card.href && <ExternalLink className="w-3 h-3 text-gray-500 group-hover:text-primary transition-colors" />}
                     </p>
@@ -243,6 +245,41 @@ export default function ProjectDetail() {
             {project.captures && project.captures.length > 0 && (
               <Section icon={ImageIcon} title="Captures d'écran" accent="accent">
                 <ImageGallery images={project.captures} title={project.title} />
+              </Section>
+            )}
+
+            {/* Documentation technique */}
+            {project.documentation && project.documentation.length > 0 && (
+              <Section icon={FileText} title="Documentation technique" accent="secondary">
+                <div className="space-y-3">
+                  {project.documentation.map((doc, i) => (
+                    <motion.a
+                      key={i}
+                      href={doc.file}
+                      download
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.07 }}
+                      className="group flex items-center gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-secondary/30 hover:bg-secondary/5 transition-all duration-300"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-secondary/15 flex items-center justify-center flex-shrink-0 group-hover:bg-secondary/25 transition-colors">
+                        <FileText className="w-5 h-5 text-secondary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm text-white group-hover:text-secondary transition-colors truncate">
+                          {doc.title}
+                        </p>
+                        {doc.description && (
+                          <p className="text-gray-400 text-xs mt-0.5 truncate">{doc.description}</p>
+                        )}
+                      </div>
+                      <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white/[0.05] flex items-center justify-center group-hover:bg-secondary/15 transition-colors">
+                        <Download className="w-4 h-4 text-gray-400 group-hover:text-secondary transition-colors" />
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
               </Section>
             )}
           </div>
@@ -350,7 +387,7 @@ export default function ProjectDetail() {
         <div className="mt-16 flex justify-center">
           <Link
             to="/#projets"
-            className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
+            className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-primary to-pink text-white font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             Retour aux projets
@@ -419,6 +456,8 @@ function ImageGallery({ images, title }) {
           <img
             src={images[active]}
             alt={`Capture ${active + 1} \u2013 ${title}`}
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto max-h-[480px] object-contain bg-dark-light"
           />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-dark/30">
@@ -428,20 +467,20 @@ function ImageGallery({ images, title }) {
           </div>
         </motion.div>
 
-        {/* Navigation arrows */}
+        {/* Navigation arrows - always visible on mobile */}
         {images.length > 1 && (
           <>
             <button
               onClick={prev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-dark/60 backdrop-blur-sm border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-dark/80 hover:scale-110"
+              className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-dark/60 backdrop-blur-sm border border-white/10 flex items-center justify-center opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-all hover:bg-dark/80 hover:scale-110 active:scale-95"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
               onClick={next}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-dark/60 backdrop-blur-sm border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-dark/80 hover:scale-110"
+              className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-dark/60 backdrop-blur-sm border border-white/10 flex items-center justify-center opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-all hover:bg-dark/80 hover:scale-110 active:scale-95"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </>
         )}
@@ -465,7 +504,7 @@ function ImageGallery({ images, title }) {
                   : 'border-white/[0.06] opacity-50 hover:opacity-80 hover:border-white/20'
               }`}
             >
-              <img src={src} alt="" className="w-full h-full object-cover" />
+              <img src={src} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </button>
           ))}
         </div>
