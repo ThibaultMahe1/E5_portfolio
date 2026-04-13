@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- SEO: Title & Description -->
     <title>Thibault Mahé — Portfolio Développeur Web | BTS SIO SLAM</title>
@@ -47,12 +48,17 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/E5_portfolio/vite.svg" />
 
-    <!-- Fonts -->
+    <!-- Fonts: preconnect + preload critical font, swap for non-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/E5_portfolio/assets/index-sb5p67zL.js"></script>
-    <link rel="stylesheet" crossorigin href="/E5_portfolio/assets/index-D5iSePV9.css">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    <script type="module" crossorigin src="/E5_portfolio/assets/index-BRwXm7NS.js"></script>
+    <link rel="modulepreload" crossorigin href="/E5_portfolio/assets/react-vendor-EfEd6_uT.js">
+    <link rel="modulepreload" crossorigin href="/E5_portfolio/assets/framer-ByW-ZDhJ.js">
+    <link rel="modulepreload" crossorigin href="/E5_portfolio/assets/router-CDnTEKLo.js">
+    <link rel="stylesheet" crossorigin href="/E5_portfolio/assets/index-fhuXwozc.css">
   </head>
   <body>
     <!-- Noscript fallback for SEO crawlers -->
