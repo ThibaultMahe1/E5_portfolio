@@ -1,4 +1,4 @@
-import{r as p,j as e}from"./react-vendor-EfEd6_uT.js";import{u as x,m as n}from"./framer-ByW-ZDhJ.js";import{c as d}from"./index-JR6u7Yu-.js";import{G as r}from"./graduation-cap-GS8UzPSI.js";import"./router-CDnTEKLo.js";/**
+import{r as p,j as e}from"./react-vendor-EfEd6_uT.js";import{u as x,m as n}from"./framer-ByW-ZDhJ.js";import{c as d}from"./index-BWmp7t-k.js";import{G as r}from"./graduation-cap-BZ9-wFX4.js";import"./router-CDnTEKLo.js";/**
  * @license lucide-react v0.577.0 - ISC
  *
  * This source code is licensed under the ISC license.
